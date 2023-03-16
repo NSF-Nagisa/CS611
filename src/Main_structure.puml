@@ -1,0 +1,448 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "*",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "Main",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1270154210 { 
+   	label=TicTacToe
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   TicTacToe1270154210[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TicTacToe</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takePiece()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1843257499 { 
+   	label=Scheduler
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Scheduler1843257499[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Scheduler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   board: Board [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   schedule: Player[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   turn: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   view: View [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># checkFormat(str: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeAction(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_1901885695 { 
+   	label=Player
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Player1901885695[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   piece: char [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ rename(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2211858 { 
+   	label=Game
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Game2211858[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Game</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   P1: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   P2: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   board: Board [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   judger: Judge [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   scheduler: Scheduler [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   scoreboard: Scoreboard [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   view: View [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takePiece()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2390489 { 
+   	label=Main
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Main2390489[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Main</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ main(args: String[])</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_2666181 { 
+   	label=View
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   View2666181[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)View</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   scanner: Scanner [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ close()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ print(s: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_323293479 { 
+   	label=tttScheduler
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   tttScheduler323293479[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)tttScheduler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeAction(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_405271328 { 
+   	label=OandCScheduler
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   OandCScheduler405271328[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OandCScheduler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ chooseAPiece(P: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeAction(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_508229462 { 
+   	label=Connect4
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Connect4508229462[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Connect4</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takePiece()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_64356038 { 
+   	label=Board
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Board64356038[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Board</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   board: char[][] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   col: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   row: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   space: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getPos(row: int, col: int): char</TD></TR>
+<TR><TD ALIGN="LEFT" >+ placePiece(r: int, c: int, p: char): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_715008076 { 
+   	label=Scoreboard
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Scoreboard715008076[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Scoreboard</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   P1: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   P2: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   scores: int[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ score(P: Player)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_71925495 { 
+   	label=Judge
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Judge71925495[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Judge</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   Owin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   Xwin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   board: Board [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   length: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkStatus(): char</TD></TR>
+<TR><TD ALIGN="LEFT" >- findWinner(line: String): char</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getDiag(len: int, x: int, y: int): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getHoriz(len: int, x: int, y: int): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getOpDiag(len: int, x: int, y: int): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getVert(len: int, x: int, y: int): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setRule(len: int): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_75956763 { 
+   	label=OandC
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   OandC75956763[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OandC</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   P1: OandCPlayer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   P2: OandCPlayer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scheduler: OandCScheduler [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takePiece()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_77833066 { 
+   	label=C4Scheduler
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   C4Scheduler77833066[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)C4Scheduler</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getAvaiPos(col: int): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ reset()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeAction(): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+Game2211858 -> Board64356038[label="board
+[0..1]"];
+Game2211858 -> Connect4508229462[arrowhead=none, arrowtail=empty, dir=both];
+Game2211858 -> Judge71925495[label="judger
+[0..1]"];
+Game2211858 -> OandC75956763[arrowhead=none, arrowtail=empty, dir=both];
+Game2211858 -> Player1901885695[label="P1
+[0..1]"];
+Game2211858 -> Player1901885695[label="P2
+[0..1]"];
+Game2211858 -> Scheduler1843257499[label="scheduler
+[0..1]"];
+Game2211858 -> Scoreboard715008076[label="scoreboard
+[0..1]"];
+Game2211858 -> TicTacToe1270154210[arrowhead=none, arrowtail=empty, dir=both];
+Game2211858 -> View2666181[label="view
+[0..1]"];
+Judge71925495 -> Board64356038[label="board
+[0..1]"];
+Main2390489 -> Connect4508229462[label="main() -> start()"];
+Main2390489 -> OandC75956763[label="main() -> start()"];
+Main2390489 -> TicTacToe1270154210[label="main() -> start()"];
+Scheduler1843257499 -> Board64356038[label="board
+[0..1]"];
+Scheduler1843257499 -> C4Scheduler77833066[arrowhead=none, arrowtail=empty, dir=both];
+Scheduler1843257499 -> OandCScheduler405271328[arrowhead=none, arrowtail=empty, dir=both];
+Scheduler1843257499 -> Player1901885695[label="schedule
+[0..*]"];
+Scheduler1843257499 -> View2666181[label="view
+[0..1]"];
+Scheduler1843257499 -> tttScheduler323293479[arrowhead=none, arrowtail=empty, dir=both];
+Scoreboard715008076 -> Player1901885695[label="P1
+[0..1]"];
+Scoreboard715008076 -> Player1901885695[label="P2
+[0..1]"];
+TicTacToe1270154210 -> Board64356038[label="start() -> clear()"];
+    
+}
+@enduml
